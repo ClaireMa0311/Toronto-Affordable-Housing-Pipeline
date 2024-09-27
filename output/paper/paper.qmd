@@ -1,0 +1,203 @@
+---
+title: "Uneven Progress: A Study of Affordable Housing Distribution and Development in Toronto’s Wards"
+author:
+  - Claire Ma
+thanks: "A GitHub Repository containing all data, R code, and other files used in this investigation is located here: <https://github.com/ClaireMa0311/Toronto-Affordable-Housing-Pipeline.git>"
+date: 09-27-2024
+date-format: long
+abstract: "This paper investigates the distribution and status of affordable housing projects across Toronto’s wards between 2017 and 2020, based on dataset Affordable Housing Pipeline from Open Data Toronto. Despite the National Housing Act's amendments in 1973 and the 2019 National Housing Strategy Act, affordable housing remains a critical issue. The study reveals significant disparities in the approval and completion of affordable housing projects across different wards. Wards 9, 12, and 13 have the highest number of approved affordable units, while several others, such as Wards 0 and 18, lag significantly behind, raising concerns about equity in resource allocation. Additionally, about 40% of housing projects remain under review, while only 25% are occupied. The findings highlight the need for continued government efforts, including financial incentives and regulatory tools, to address housing shortages and ensure equitable access to affordable housing across Toronto."
+format: pdf
+number-sections: true
+# The toc parameter used to create a table of contents was obtained from
+# Quarto documentation:
+# https://quarto.org/docs/reference/formats/pdf.html
+toc: true
+bibliography: references.bib
+---
+```{r}
+#| echo: false
+#| warning: false
+#### Preamble ####
+
+# Purpose: Generates a paper titled "Uneven Progress: A Study of Affordable 
+#Housing Distribution and Development in Toronto’s Wards in PDF format when
+# rendered.
+# Author: Claire Ma
+# Date: September 27, 2024
+# Contact: minglu.ma@mail.utoronto.ca
+# Pre-requisites: Run the files "01-download_data.R" and "02-data_cleaning.R".
+```
+
+
+```{r}
+#| echo: false
+#| include: false
+#| message: false
+#| warning: false
+ #### Loading Packages ####
+library(opendatatoronto)
+library(tidyverse)
+library(knitr)
+```
+
+# Introduction{#sec-introduction}
+
+The National Housing Act of Canada, amended in 1973, represents a pivotal moment in Canadian housing policy, with the goal of improving housing conditions, expanding access to affordable housing, and supporting Canadians in achieving homeownership[@Branch_2024]. Despite this landmark legislation, more than 50 years later, affordable housing remains a critical issue, with many Canadians struggling to secure affordable living arrangements. According to the 2021 Census data reported by @CityofToronto2023 approximately 48 percent of Toronto households (557,970 households) are renters, and 40 percent of those renters live in unaffordable housing. In total, one in three households in Toronto—both renters and homeowners—(373,965 households or 32 percent) face housing affordability challenges, while nearly one in five households (215,225) are classified as being in core housing need, indicating an urgent need for housing assistance programs [@CityofToronto2023].
+
+In Canada, affordable housing is increasingly recognized as a fundamental human right, a principle enshrined in the National Housing Strategy Act passed in 2019 [@NationalHousingStrategyAct]. This legislation reaffirms the importance of accessible and affordable housing as critical to the well-being of individuals and communities [@NationalHousingStrategyAct]. Research by @cummins2001housing underscores the crucial role affordable housing plays in fostering access to opportunities, reducing segregation, and combating homelessness. Moreover, as @schwartz2016importance emphasizes, affordable housing is not only vital for providing shelter but also for stimulating economic growth. High housing costs can hinder workforce retention, making it difficult for businesses to attract and retain skilled employees [@schwartz2016importance]. By developing more affordable housing options, cities can boost their economic competitiveness, increase productivity, and create more stable communities[@schwartz2016importance]. Affordable housing, therefore, is not just a matter of social welfare—it is a key element of urban planning that has profound economic and social implications. As demand for affordable housing continues to grow, it is imperative that governments and municipalities adopt effective strategies to ensure housing accessibility.
+
+In response to this ongoing crisis, the [@leon2022toronto] has initiated several housing programs aimed at increasing the availability of affordable rental units. These initiatives include financial incentives provided through programs such as Open Door and Housing Now, as well as housing development regulations like Section 37 density bonusing and the Community Benefits Charge [@leon2022toronto]. These programs are designed to make affordable housing projects more feasible by offering financial support and regulatory tools that enable developers to build housing that is accessible to lower-income residents.This paper, based on a dataset of Toronto's housing initiatives from 2017 from Open data dataset--Affordable Housing Pipeline, explores the various housing programs and developments implemented across the city’s wards since 2020.
+
+# Data {#sec-data}
+
+## Overview {#sec-data-overview}
+
+The dataset used in this analysis is the 2023 installment of City of Toronto Housing Initiatives obtained from Open Data Toronto [@HousingSecretariat_2024]. This dataset includes information on 236 housing projects approved by City Council since 2017, including financial incentives granted through programs like Open Door and Housing Now, as well as development applications under regulations such as the Section 37 density bonusing and Community Benefits Charge [@HousingSecretariat_2024].
+
+These housing initiatives focus primarily on affordable rental housing, tracking projects from pre-construction to completion. The dataset is updated regularly to reflect the current status of projects, which may be under construction or recently completed [@HousingSecretariat_2024]. As part of the City of Toronto's commitment to transparency, this dataset is classified as “open data,” meaning it can be used for various purposes with proper attribution and a link to the City of Toronto's Open Data License [@CityofToronto_2024].
+
+The variables included in this dataset are: Project ID, which uniquely identifies each housing project; Addresses, detailing the location of the development; Status, indicating the stage of the project (e.g., "Under Construction," "Occupied"); Ward, identifying the municipal ward of each project; Affordable Homes Approved (2020 - Present), which records the number of affordable homes approved since 2020; and Total Affordable Rental Homes Approved (2017 - Present), which captures the cumulative number of approved affordable rental units since 2017. Additionally, variables such as Rent-Controlled Market Units Approved and Rent-Geared-to-Income (RGI) Homes Approved provide insights into the allocation of rent-controlled and RGI units.
+
+Using R programming language [@citeR], the janitor [@citejanitor] and tidyverse [@citetidyverse] packages were employed to simulate and test the dataset. The raw data, Affordable Housing Pipeline sourced from Open Data Toronto, was downloaded using the opendatatoronto [@citeopendatatoronto] and tidyverse [@citetidyverse] packages. Subsequently, the tidyverse package [@citetidyverse] was utilized to clean and validate the dataset, ensuring it was ready for further statistical and spatial analysis relevant to Toronto's affordable housing efforts.
+
+\newpage
+
+## Cleaned data {#sec-data-cleaned_data}
+@tbl-cleaneddata gives an example of the cleaned data to gain insights on the dataset using. As the foucous of this paper mentioned in @sec-introduction, the cleaned data features only for the columns X-id, Status, Ward and Affordable Homes Approved since 2020. Furthermore, data points contained missing attributes, represented by "NA" values. These entries were completely removed during the data cleaning process to simplify the analysis.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: tbl-cleaneddata
+#| tbl-cap: "Example of Cleaned Affordable Housing Data"
+cleaned_data <- read.csv("/Users/luuu/Downloads/starter_folder-main/output/data/cleaned_data.csv")
+example_data <- head(cleaned_data, 5)
+knitr::kable(example_data, caption = "Example of Cleaned Affordable Housing Data")
+
+```
+
+# Results {#sec-data-results}
+
+```{r, echo=FALSE, include=FALSE}
+#| echo: false
+#| warning: false
+#| message: false
+#### Loading the Cleaned Dataset ####
+marriage_licence_packages <- search_packages("Affordable Housing Pipeline")
+
+# Retrieve a list of all resources (datasets) available within the found package
+marriage_licence_resources <- marriage_licence_packages %>%
+  list_package_resources()
+# Display the list of resources available in the "Marriage Licence Statistics" package
+marriage_licence_resources
+marriage_licence_statistics <- marriage_licence_resources[4,] %>%
+  get_resource()
+data = marriage_licence_statistics
+write_csv(marriage_licence_statistics, "/Users/luuu/Downloads/starter_folder-main/data4.csv")
+
+```
+
+After loading the dataset using the `R` programming language [@citeR] and the `opendatatoronto` package [@citeopendatatoronto], the `tidyverse` [@citetidyverse] package was used to generate graphs. Relevent R code was adapted from @tellingstorieswithdata.
+
+\newpage
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-occupied
+#| fig-cap: "Occupied Affordable Homes by Ward"
+#### First Graph ####
+# This code is based on knowledge from Alexander (2023).
+# Step 1: Aggregate data by Ward to get the total approved affordable homes
+aggregated_data <- data %>%
+  group_by(Ward) %>%
+  summarise(Total_Affordable_Homes = sum(Affordable.Homes.Approved..2020...Present., na.rm = TRUE))
+
+# Step 2: Create a bar plot with total approved affordable homes and label the bar heights
+ggplot(aggregated_data, aes(x = factor(Ward), y = Total_Affordable_Homes)) +
+  geom_bar(stat = "identity", fill = "blue", alpha = 0.7) +
+  geom_text(aes(label = Total_Affordable_Homes), vjust = -0.5, size = 3.5) +  # Adding total homes as labels on top of bars
+  labs(title = "Occupied Affordable Homes by Ward", 
+       x = "Ward", 
+       y = "Number of Approved Affordable Homes") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+```
+@fig-occupied illustrates the distribution of occupied affordable housing units across various wards in Toronto. Ward 11 stands out with the largest number of approved affordable homes, reaching over 200 units. This is followed by Ward 19, which has approximately 100 approved affordable units. Wards 10, 21, and 20 also show notable progress, each having around 50 to 100 units approved. In contrast, some wards, such as Wards 0, 3, 4, and 6, have no or minimal approved affordable homes, highlighting potential gaps in affordable housing development. Wards like 9, 12, 13, and 25 have between 10 and 50 units, demonstrating that affordable housing initiatives are underway but not yet as impactful as in other regions.
+
+\newpage
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-totalapproved
+#| fig-cap: "Total Approved Affordable Homes by Ward"
+#### Second Graph ####
+
+# This code is based on knowledge from Alexander (2023).
+library(ggplot2)
+
+aggregated_data <- data %>%
+  group_by(Ward) %>%
+  summarise(Total_Affordable_Homes = sum(Affordable.Homes.Approved..2020...Present., na.rm = TRUE))
+
+# Create a bar plot for total approved affordable homes by ward with labels
+ggplot(aggregated_data, aes(x = factor(Ward), y = Total_Affordable_Homes)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_text(aes(label = Total_Affordable_Homes), vjust = -0.5, size = 3.5) +  # Add labels on top of bars
+  labs(title = "Total Approved Affordable Homes by Ward", 
+       x = "Ward", 
+       y = "Total Approved Affordable Homes") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme_minimal()
+
+```
+
+@fig-totalapproved illustrates the total number of approved affordable homes across different wards in Toronto. The graph reveals notable disparities in the distribution of approved affordable housing units, with several wards showing a significantly higher number of approved homes than others.Ward 9 and Ward 12 stand out with the highest number of approved affordable homes, with 2021 and 1876 units, respectively. Following closely behind is Ward 13, with 1574 approved homes. These wards have been prioritized or have had successful projects aimed at addressing affordable housing needs, reflecting a strong commitment to housing development in these areas.On the other hand, Ward 0 has no approved affordable homes, and Ward 18 shows a very low figure of 59 homes, indicating possible gaps in housing development. Ward 1, Ward 2, Ward 15, and Ward 16 also have fewer than 200 homes approved, highlighting regions where affordable housing initiatives are lagging.In the mid-range, Ward 21 has 1250 approved homes, followed by Ward 24 with 673 homes, both indicating moderate progress in developing affordable housing units.
+
+\newpage
+
+```{r, echo=FALSE}
+#| echo: false
+#| warning: false
+#| message: false
+#| label: fig-statusdistribution
+#| fig-cap: "Projects Status Distribution"
+
+# This code is based on knowledge from Alexander (2023).
+# Create a pie chart for the distribution of approved projects' status
+data %>%
+  count(Status) %>%
+  ggplot(aes(x = "", y = n, fill = Status)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Project Status Distribution", x = "", y = "") +
+  theme_void() +
+  theme(legend.position = "right")
+```
+
+@fig-statusdistribution shows the distribution of affordable housing projects in Toronto by project status. The largest portion of projects (approximately 40\%) are still under review, indicating a significant number of developments are awaiting approval. This is followed by occupied projects, which make up around 25\% of the total, demonstrating that a quarter of the housing initiatives have been successfully completed and are providing homes to residents. Projects in the pre-planning phase account for roughly 20\%, while those under construction make up approximately 10%. Smaller portions of projects have reached final planning approval (around 3\%), with cancelled projects making up less than 2\%. Percentages are rounded to the nearest integer.
+
+\newpage
+
+# Discussion
+The analysis of affordable housing projects across Toronto's wards highlights significant disparities in the distribution of both approved and completed units, while also indicating that many projects remain in their early stages of development. As noted by @fig-occupied, certain wards, like Ward 11, significantly outpace others in terms of completed affordable homes. These disparities are likely driven by high housing costs caused by population growth, proximity to economic hubs, and increased migration [@evans2007city]. In @evans2007city’s study of Peel Region, which includes Mississauga, Brampton, and Caledon, the area has experienced rapid population growth as people move there seeking more affordable housing due to its close proximity to Toronto. In response, the government has increased attentions efforts to address the urgent affordable housing crisis in Peel by partnering with non-profit organizations, implementing zoning laws, and providing municipal funding to support housing initiatives [@evans2007city]. @fig-totalapproved underscores the uneven distribution of affordable housing approvals, highlighting that Wards 9, 12, and 13 have the highest number of approved units, while many others fall far behind. This raises concerns about the equitable allocation of resources and development across the city. These disparities may be influenced by factors such as land availability, political backing, local demand, and racial dynamics [@clapham2018remaking]. Moreover, the finding show that a large proportion of projects are still in early stages of development as in @fig-statusdistribution, majority of projects remain in the "under review" or "pre-planning" stages with only a fraction of projects marked as completed or under construction. These early-stage projects, while promising, are far from providing immediate relief to the housing shortage. Meanwhile, the relatively small percentage of projects under construction points to inefficiencies in moving projects forward, a trend that aligns with the city's struggles to meet rising demand for affordable housing. To address these disparities and delays, there Toronto need a more equitable allocation of resources and a more efficient development pipeline to accelerate project completion. Strengthening partnerships, streamlining approval processes, and ensuring that underrepresented wards receive adequate attention will be crucial to alleviating Toronto's ongoing affordable housing crisis.
+
+While this analysis offers important insights, several limitations must be acknowledged. First, the data focuses solely on approved projects and does not account for those that have been delayed or canceled, potentially underestimating the total number of housing units that could have been made available. Additionally, this study does not consider other factors such as land-use constraints or community opposition, which may have contributed to delays in certain wards.
+
+Future research should explore the barriers preventing projects from moving through the pipeline more efficiently. Investigating why certain wards have significantly fewer approved or occupied homes would provide critical insight into how policy interventions could be better targeted. Expanding this analysis to include data on under-construction and planned projects, as well as on housing developments across other Canadian cities, could help inform broader strategies to address the national housing crisis.
+
+
+
+\newpage
+
+
+
+
+
+# References
+
+

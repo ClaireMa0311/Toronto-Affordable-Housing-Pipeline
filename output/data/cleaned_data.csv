@@ -1,0 +1,237 @@
+X_id,Status,Ward,Affordable.Homes.Approved..2020...Present.
+1,Under Construction,3,0
+2,Under Construction,14,0
+3,Under Construction,14,6
+4,Occupied,11,9
+5,Under Construction,14,9
+6,Under Construction,13,7
+7,Pre-Planning,4,40
+8,Occupied,20,56
+9,Under Review,4,0
+10,Occupied,14,0
+11,Final Planning Approval,9,25
+12,Under Review,9,0
+13,Pre-Planning,9,15
+14,Pre-Planning,4,76
+15,Occupied,21,0
+16,Under Review,5,97
+17,Under Construction,9,0
+18,Under Review,8,80
+19,Cancelled,24,303
+20,Under Review,13,0
+21,Pre-Planning,9,10
+22,Pre-Planning,10,4
+23,Occupied,13,8
+24,Under Review,4,76
+25,Under Review,3,12
+26,Occupied,13,0
+27,Occupied,13,0
+28,Under Review,9,15
+29,Under Review,6,220
+30,Under Construction,19,24
+31,Occupied,11,0
+32,Under Review,12,98
+33,Under Review,3,38
+34,Under Review,9,10
+35,Occupied,14,23
+36,Final Planning Approval,24,120
+37,Under Construction,12,16
+38,Pre-Planning,4,30
+39,Under Construction,4,51
+40,Under Review,3,58
+41,Under Review,10,141
+42,Occupied,4,0
+43,Pre-Planning,13,256
+44,Under Review,4,14
+45,Under Construction,8,106
+46,Under Review,5,50
+47,Under Construction,14,100
+48,Under Review,21,229
+49,Occupied,11,10
+50,Under Review,19,67
+51,Under Review,19,93
+52,Under Review,16,10
+53,Under Review,5,6
+54,Occupied,10,0
+55,Occupied,10,0
+56,Under Review,20,85
+57,Pre-Planning,4,92
+58,Pre-Planning,24,140
+59,Under Review,21,95
+60,Under Review,18,59
+61,Under Review,24,92
+62,Under Review,3,200
+63,Occupied,6,0
+64,Occupied,13,0
+65,Under Review,21,130
+66,Under Review,21,60
+67,Under Review,21,67
+68,Under Construction,4,61
+69,Occupied,19,0
+70,Under Review,10,26
+71,Under Review,10,76
+72,Occupied,11,0
+73,Pre-Planning,3,102
+74,Under Review,21,37
+75,Under Review,10,11
+76,Occupied,6,0
+77,Pre-Planning,4,0
+78,Under Review,10,110
+79,Under Construction,13,48
+80,Under Review,3,0
+81,Under Review,3,0
+82,Occupied,13,20
+83,Under Review,12,32
+84,Occupied,5,0
+85,Pre-Planning,4,9
+86,Occupied,13,0
+87,Under Review,21,39
+88,Under Review,21,91
+89,Under Construction,20,24
+90,Occupied,10,84
+91,Under Review,14,20
+92,Occupied,13,0
+93,Under Construction,5,0
+94,Pre-Planning,21,315
+95,Pre-Planning,9,76
+96,Pre-Planning,20,4
+97,Under Construction,10,31
+98,Under Review,21,64
+99,Under Review,6,10
+100,Occupied,11,0
+101,Occupied,13,0
+102,Under Construction,25,319
+103,Pre-Planning,25,0
+104,Under Review,11,22
+105,Pre-Planning,17,603
+106,Under Review,10,254
+107,Under Review,17,80
+108,Under Review,17,80
+109,Occupied,13,0
+110,Under Review,17,19
+111,Occupied,12,23
+112,Under Review,1,0
+113,Under Review,13,0
+114,Pre-Planning,5,100
+115,Under Review,14,50
+116,Under Review,9,18
+117,Under Review,17,40
+118,Occupied,13,24
+119,Under Construction,4,6
+120,Occupied,9,10
+121,Under Review,7,107
+122,Occupied,14,0
+123,Under Review,21,58
+124,Under Construction,2,172
+125,Under Review,8,10
+126,Under Review,13,96
+127,Under Review,10,32
+128,Under Construction,11,22
+129,Under Review,9,21
+130,Occupied,9,44
+131,Under Construction,10,0
+132,Occupied,4,0
+133,Occupied,5,0
+134,Under Review,3,493
+135,Occupied,13,0
+136,Under Review,17,752
+137,Under Review,24,37
+138,Occupied,4,0
+139,Occupied,25,2
+140,Pre-Planning,11,67
+141,Under Review,10,67
+142,Under Review,10,45
+143,Under Review,13,31
+144,Under Review,19,47
+145,Under Review,4,0
+146,Pre-Planning,24,111
+147,Under Review,22,272
+148,Occupied,13,0
+149,Occupied,21,57
+150,Final Planning Approval,13,12
+151,Under Review,6,65
+152,Pre-Planning,24,492
+153,Pre-Planning,24,67
+154,Under Review,13,133
+155,Occupied,19,12
+156,Pre-Planning,24,68
+157,Pre-Planning,6,0
+158,Under Review,11,10
+159,Under Review,2,0
+160,Occupied,25,20
+161,Under Construction,25,64
+162,Under Review,4,3
+163,Under Review,14,10
+164,Pre-Planning,13,0
+165,Under Review,6,520
+166,Under Review,11,129
+167,Pre-Planning,1,0
+168,Under Review,13,25
+169,Final Planning Approval,24,62
+170,Occupied,3,0
+171,Occupied,19,59
+172,Occupied,11,12
+173,Occupied,12,0
+174,Under Review,3,6
+175,Under Construction,10,0
+176,Under Construction,10,0
+177,Under Review,6,0
+178,Occupied,13,0
+179,Under Review,19,6
+180,Under Review,4,2
+181,Under Review,6,10
+182,Under Review,6,10
+183,Pre-Planning,25,47
+184,Under Construction,1,0
+185,Under Review,11,15
+186,Pre-Planning,11,47
+187,Under Review,9,0
+188,Under Construction,13,92
+189,Under Construction,13,188
+190,Under Review,22,9
+191,Under Construction,14,0
+192,Under Review,10,31
+193,Under Review,20,250
+194,Pre-Planning,12,26
+195,Cancelled,1,113
+196,Under Review,16,418
+197,Under Review,20,254
+198,Pre-Planning,3,33
+199,Under Review,24,0
+200,Under Review,16,286
+201,Under Review,15,40
+202,Cancelled,5,0
+203,Pre-Planning,14,96
+204,Under Review,14,2
+205,Under Construction,16,0
+206,Occupied,11,88
+207,Under Review,14,6
+208,Pre-Planning,19,20
+209,Under Review,11,20
+210,Occupied,13,0
+211,Under Review,24,28
+212,Under Review,9,120
+213,Under Review,1,60
+214,Under Review,10,35
+215,Under Review,21,8
+216,Pre-Planning,9,10
+217,Under Review,9,0
+218,Under Construction,13,24
+219,Under Review,3,490
+220,Under Construction,3,218
+221,Under Review,3,196
+222,Occupied,0,0
+223,Pre-Planning,10,199
+224,Under Review,14,215
+225,Final Planning Approval,8,130
+226,Under Construction,11,0
+227,Under Review,10,468
+228,Occupied,13,0
+229,Occupied,13,0
+230,Under Review,13,637
+231,Under Construction,13,275
+232,Under Review,10,407
+233,Occupied,11,156
+234,Pre-Planning,14,12
+235,Under Review,24,10
+236,Under Review,14,6
