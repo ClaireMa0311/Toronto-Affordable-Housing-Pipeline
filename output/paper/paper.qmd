@@ -70,7 +70,6 @@ Using R programming language [@citeR], the janitor [@citejanitor] and tidyverse 
 #| warning: false
 #| message: false
 #| label: tbl-cleaneddata
-#| tbl-cap: "Example of Cleaned Affordable Housing Data"
 cleaned_data <- read.csv("/Users/luuu/Downloads/starter_folder-main/output/data/cleaned_data.csv")
 example_data <- head(cleaned_data, 5)
 knitr::kable(example_data, caption = "Example of Cleaned Affordable Housing Data")
